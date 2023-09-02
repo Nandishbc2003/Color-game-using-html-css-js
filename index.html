@@ -1,0 +1,477 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Color game</title>
+</head>
+<body>
+	<div class="head"><h1>RGB GAME</h1>
+		<h2 id="co">Click below to start the game</h2>
+		<p id="result"></p>
+
+		</div>
+		<div id="gap"></div>
+		<div id="hi"><button class="hi" onclick="easy(play)"> Easy</button>
+		<button class="hi" onclick="hard(play)">Hard</button></div>
+		<div id="bt">
+		<button id="play" onclick="start()">Get colors</button></div>
+<div class="row1 row">
+	<div id="a" class="on" onclick="checka()"></div>
+	<div id="b" class="on"  onclick="checkb()"></div>
+	<div id="c" class="on" onclick="checkc()"></div>
+</div>
+<div class="row2 row">
+	<div id="d" class="on"  onclick="checkd()"></div>
+	<div id="e" class="on" onclick="checke()"></div>
+	<div id="f" class="on" onclick="checkf()"></div>
+</div>
+</body>
+</html>
+<style type="text/css">.head{
+	background-color: lightgoldenrodyellow;
+	height: 255px;
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: -1;
+	border-bottom: 30px solid orange;
+}
+.head h2{
+	width: 100%;
+	text-align: center;
+	font-family: sans-serif;
+	margin-top: 40px;
+}
+.head h1{
+	font-family: sans-serif;
+	margin-top: 50px;
+	text-align: center;
+	width: 100%;
+}
+#result{
+	width: 100%;
+	text-align: center;
+	font-size: 110%;
+	font-family: sans-serif;
+	font-weight: 600;
+}
+#gap{
+	height: 190px;
+}
+#hi button{
+	display: inline-block;
+	padding: 10px;
+	width: 80px;
+	background: none;
+	margin: 10px 50px 10px 50px;
+	height: 40px;
+	border: 2px solid indianred;
+	border-radius: 5px;
+	float: right; 
+	cursor: pointer!important;
+}
+#hi{
+	display: flex;
+	justify-content: center;
+	margin-top: 0px;
+}
+#hi button:hover{
+	background-color: indianred;
+	color: white;
+	box-shadow: 0px 3px 8px indianred;
+	font-weight: 600;
+}
+#bt{
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+#play{
+	display: inline-block;
+	width: 120px;
+	height: 40px;
+	color: white;
+	background-color: green;
+	font-weight: 600;
+	font-family: sans-serif;
+	border-radius: 5px;
+	border: 5px solid green;
+	cursor: pointer;
+	position: relative;
+	top: 50px;
+	
+}
+#play:hover{
+	background-color: darkblue;
+	border: 5px solid darkblue;
+	box-shadow: 0px 3px 8px 0px darkblue;
+}
+.row1{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-top: 80px;
+}
+.row2{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	margin-top: 20px;
+}
+.row1 div,.row2 div{
+	height: 100px;
+	width: 100px;
+	margin: 0px 20px 5px 20px;
+	border-radius: 10px;
+	border: 2px solid black;
+}
+
+body{
+	background-color: black;
+}
+@media (max-width: 400px){
+	.row1 div,.row2 div{
+	height: 80px;
+	width: 80px;
+	margin: 0px 5px 5px 5px;
+}
+}</style>
+<script type="text/javascript">var n=Math.floor(Math.random()*6);
+var m=5;
+var l;
+var a=document.getElementById("co");
+function easy(callback){
+    var t= document.getElementsByClassName("on");
+      for(let i=0;i<3;i++){
+        t[i].style.visibility="visible";
+      
+   }
+   m=2;
+   l=m;
+   n=3;
+   document.querySelector(".row1").style.display="flex";
+   document.querySelector(".row2").style.display="none";
+   callback();
+ }
+ function hard(callback){
+    var t= document.getElementsByClassName("on");
+      for(let i=0;i<t.length;i++){
+        t[i].style.visibility="visible";
+      
+   }
+   m=5;
+   l=m;
+   n=6;
+   document.querySelector(".row2").style.display="flex";
+   document.querySelector(".row1").style.display="flex";
+   callback();
+ }
+ function play(){
+   //document.getElementsByClassName(".row").style.display="flex";
+   document.getElementById("result").style.color="black";
+   document.getElementById("result").innerText="Game Started!";
+    var x= Math.floor((Math.random()*254)+1);
+    var y=Math.floor((Math.random()*254)+1);
+    var z=Math.floor((Math.random()*254)+1);
+    a.innerText= "rgb("+x+", "+y+", "+z+")";
+    var t= document.getElementsByClassName("on");
+    var j= Math.floor(Math.random()*n);
+    console.log(j);
+    for(let i=0;i<t.length;i++){
+      if(i!=j){
+         t[i].style.backgroundColor="rgb("+Math.floor((Math.random()*254)+1)+","+Math.floor((Math.random()*254)+1)+","+Math.floor((Math.random()*254)+1)+")";
+      }
+      else{
+         t[j].style.backgroundColor=a.innerText;
+         console.log(t[j].style.backgroundColor);
+         console.log(j);
+      }
+      
+
+    }
+    var u=document.getElementById("play");
+    u.textContent="New colors";
+ }
+ function start(){
+    m=5;
+    l=m;
+    var t= document.getElementsByClassName("on");
+      for(let i=0;i<t.length;i++){
+        t[i].style.visibility="visible";
+      
+   }
+    document.querySelector(".row2").style.display="flex";
+    document.querySelector(".row1").style.display="flex";
+    //document.getElementsByClassName(".row").style.display="flex";
+    document.getElementById("result").style.color="black";
+    document.getElementById("result").innerText="Game Started!";
+ 	 var x= Math.floor((Math.random()*254)+1);
+    var y=Math.floor((Math.random()*254)+1);
+    var z= Math.floor((Math.random()*254)+1);
+    a.innerText= "rgb("+x+", "+y+", "+z+")";
+    var t= document.getElementsByClassName("on");
+    var j= Math.floor(Math.random()*n);
+    console.log(j);
+    for(let i=0;i<t.length;i++){
+      if(i!=j){
+         t[i].style.backgroundColor="rgb("+Math.floor((Math.random()*254)+1)+","+Math.floor((Math.random()*254)+1)+","+Math.floor((Math.random()*254)+1)+")";
+      }
+      else{
+         t[j].style.backgroundColor=a.innerText;
+         console.log(t[j].style.backgroundColor);
+         console.log(j);
+      }
+      
+
+    }
+    var u=document.getElementById("play");
+    u.textContent="New colors";
+ }
+ 
+ function checka(){
+   m=m-1;
+   var z= document.getElementById("a");
+   var x= z.style.backgroundColor;
+   var y=a.innerText;
+   console.log(x);
+   console.log(y);
+   if(m==0){
+      if(x==y){
+         document.getElementById("result").innerText="Correct!";
+         //document.querySelectorAll(".row").style.display="flex";
+         var t= document.getElementsByClassName("on");
+         for(let i=0;i<=l;i++){
+           t[i].style.visibility="visible";
+           t[i].style.backgroundColor=y;
+      
+   }
+    document.getElementById("result").innerText="Correct!";
+      }
+      else{
+         //document.querySelectorAll(".row").style.display="none";
+         //z.style.backgroundColor="black";
+         document.querySelector(".row2").style.display="none";
+         document.querySelector(".row1").style.display="none";
+         document.getElementById("result").style.color="red";
+         document.getElementById("result").innerText="You lost";
+      }
+   }
+   else if(x!=y && m!=0){
+      z.style.visibility="hidden";
+      //z.style.backgroundColor="black";
+      //document.getElementById("result").color="red";
+      document.getElementById("result").innerText="Try Again";
+   }
+   else{
+    //document.querySelectorAll(".row").style.display="flex";
+    var t= document.getElementsByClassName("on");
+    for(let i=0;i<=l;i++){
+      t[i].style.visibility="visible";
+      t[i].style.backgroundColor=y;
+      
+   }
+    document.getElementById("result").innerText="Correct!";
+    }
+ }
+ function checkb(){
+   m=m-1;
+   var z= document.getElementById("b");
+   var x= z.style.backgroundColor;
+   var y=a.innerText;
+   if(m==0){
+      if(x==y){
+         document.getElementById("result").innerText="Correct!";
+         //document.querySelectorAll(".row").style.display="flex";
+         var t= document.getElementsByClassName("on");
+         for(let i=0;i<=l;i++){
+           t[i].style.visibility="visible";
+           t[i].style.backgroundColor=y;
+      
+   }
+         document.getElementById("result").innerText="Correct!";
+      }
+      else{
+         //document.querySelectorAll(".row").style.display="none";
+         document.querySelector(".row2").style.display="none";
+         document.querySelector(".row1").style.display="none";
+         //document.getElementById("result").style.color="red";
+         document.getElementById("result").style.color="red";
+         document.getElementById("result").innerText="You lost";
+      }
+   }
+   else if(x!=y && m!=0){
+      z.style.visibility="hidden";
+      //z.style.backgroundColor="black";
+      //document.getElementById("result").color="red";
+      document.getElementById("result").innerText="Try Again";
+      
+   }
+   else{
+      //document.querySelectorAll(".row").style.display="flex";
+      var t= document.getElementsByClassName("on");
+      for(let i=0;i<=l;i++){
+        t[i].style.visibility="visible";
+        t[i].style.backgroundColor=y;
+      
+   }
+      document.getElementById("result").innerText="Correct!";
+   }
+ }
+ function checkc(){
+   m=m-1;
+   var z= document.getElementById("c");
+   var x= z.style.backgroundColor;
+   var y=a.innerText;
+   if(m==0){
+      if(x==y){
+         var t= document.getElementsByClassName("on");
+         for(let i=0;i<=l;i++){
+           t[i].style.visibility="visible";
+           t[i].style.backgroundColor=y;
+      
+   }
+         document.getElementById("result").innerText="Correct!";
+      }
+      else{
+         document.querySelector(".row2").style.display="none";
+         document.querySelector(".row1").style.display="none";
+         document.getElementById("result").style.color="red";
+         document.getElementById("result").innerText="You lost";
+      }
+   }
+   else if(x!=y && m!=0){
+      z.style.visibility="hidden";
+      //z.style.backgroundColor="black";
+      //document.getElementById("result").color="red";
+      document.getElementById("result").innerText="Try Again";
+   }
+   else{
+      var t= document.getElementsByClassName("on");
+      for(let i=0;i<=l;i++){
+        t[i].style.visibility="visible";
+        t[i].style.backgroundColor=y;
+      
+   }
+      document.getElementById("result").innerText="Correct!";
+   }
+ }
+ function checkd(){
+   m=m-1;
+   var z= document.getElementById("d");
+   var x= z.style.backgroundColor;
+   var y=a.innerText;
+   if(m==0){
+      if(x==y){
+         var t= document.getElementsByClassName("on");
+         for(let i=0;i<=l;i++){
+           t[i].style.visibility="visible";
+           t[i].style.backgroundColor=y;
+      
+   }
+         document.getElementById("result").innerText="Correct!";
+      }
+      else{
+         document.querySelector(".row2").style.display="none";
+         document.querySelector(".row1").style.display="none";
+         document.getElementById("result").style.color="red";
+         document.getElementById("result").innerText="You lost";
+      }
+   }
+   else if(x!=y && m!=0){
+      z.style.visibility="hidden";
+      //z.style.backgroundColor="black";
+      //document.getElementById("result").color="red";
+      document.getElementById("result").innerText="Try Again";
+   }
+   else{
+      var t= document.getElementsByClassName("on");
+      for(let i=0;i<=l;i++){
+        t[i].style.visibility="visible";
+        t[i].style.backgroundColor=y;
+      
+   }
+      document.getElementById("result").innerText="Correct!";
+   }
+ }
+ function checke(){
+   m=m-1;
+   var z= document.getElementById("e");
+   var x= z.style.backgroundColor;
+   var y=a.innerText;
+   if(m==0){
+      if(x==y){
+         var t= document.getElementsByClassName("on");
+         for(let i=0;i<=t.length;i++){
+           t[i].style.visibility="visible";
+           t[i].style.backgroundColor=y;
+      
+   }
+         document.getElementById("result").innerText="Correct!";
+      }
+      else{
+         document.querySelector(".row2").style.display="none";
+         document.querySelector(".row1").style.display="none";
+         document.getElementById("result").style.color="red";
+         document.getElementById("result").innerText="You lost";
+      }
+   }
+   else if(x!=y && m!=0){
+      z.style.visibility="hidden";
+      //z.style.backgroundColor="black";
+      //document.getElementById("result").color="red";
+      document.getElementById("result").innerText="Try Again";
+   }
+   else{
+      var t= document.getElementsByClassName("on");
+      for(let i=0;i<=l;i++){
+        t[i].style.visibility="visible";
+        t[i].style.backgroundColor=y;
+
+      
+   }
+      document.getElementById("result").innerText="Correct!";
+   }
+ }
+ function checkf(){
+   m=m-1;
+   var z= document.getElementById("f");
+   var x= z.style.backgroundColor;
+   var y=a.innerText;
+   if(m==0){
+      if(x==y){
+         var t= document.getElementsByClassName("on");
+         for(let i=0;i<=l;i++){
+           t[i].style.visibility="visible";
+           t[i].style.backgroundColor=y;
+      
+   }
+         document.getElementById("result").innerText="Correct!";
+      }
+      else{
+         document.querySelector(".row2").style.display="none";
+         document.querySelector(".row1").style.display="none";
+         document.getElementById("result").style.color="red";
+         document.getElementById("result").innerText="You lost";
+      }
+   }
+   else if(x!=y && m!=0){
+      z.style.visibility="hidden";
+      //z.style.backgroundColor="black";
+      //document.getElementById("result").color="red";
+      document.getElementById("result").innerText="Try Again";
+   }
+   else{
+      var t= document.getElementsByClassName("on");
+      for(let i=0;i<=l;i++){
+        t[i].style.visibility="visible";
+        t[i].style.backgroundColor=y;
+      
+   }
+      document.getElementById("result").innerText="Correct!";
+   }
+ }</script>
